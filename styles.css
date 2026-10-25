@@ -106,11 +106,39 @@ ul {
   gap: 24px;
   padding: var(--header-height) 24px 0;
   text-align: center;
+  position: relative;
+  overflow: hidden; /* o personagem entra e sai pelas laterais sem criar rolagem */
 }
 
 .hero-avatar {
   width: clamp(120px, 20vw, 180px);
   height: auto;
+  transform-origin: center bottom;
+  transition: transform 0.12s ease-out;
+}
+
+/* "Afunda" quando o personagem pisa na cabeça */
+.hero-avatar.is-stomped {
+  transform: scaleY(0.92);
+}
+
+/* Personagem em pixel art que corre pelo hero */
+.runner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  image-rendering: pixelated;
+  will-change: transform;
+}
+
+.runner svg {
+  display: block;
+}
+
+.runner svg:not(.is-active) {
+  display: none;
 }
 
 .hero-title {
@@ -123,10 +151,16 @@ ul {
 
 .hero-role {
   margin-top: -16px;
-  font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--color-text);
+}
+
+.hero-sep {
+  margin: 0 12px;
+  color: #3a3a3a;
+  font-weight: 400;
 }
 
 .hero-subtitle {
@@ -309,7 +343,7 @@ main > section + section::before {
   display: flex;
   gap: 16px;
   width: max-content;
-  animation: tech-scroll 30s linear infinite;
+  animation: tech-scroll 30s linear infinite; /* duração ajustada pelo JS conforme o tamanho */
 }
 
 .tech-carousel:hover .tech-track {
@@ -342,13 +376,9 @@ main > section + section::before {
   height: 48px;
 }
 
-/* Ícones escuros demais para o fundo preto */
-.tech-icon--invert {
-  filter: invert(1);
-}
-
-.tech-icon--brighten {
-  filter: brightness(1.8) saturate(1.2);
+/* Ícone cinza escuro demais para o fundo preto */
+.tech-icon--light {
+  filter: brightness(2.4);
 }
 
 /* Sem animação para quem prefere menos movimento: os ícones quebram em linhas */
@@ -366,6 +396,9 @@ main > section + section::before {
 }
 
 /* --- Contato ------------------------------------------------------------- */
+.contact-social {
+  margin: -16px 0 24px -8px; /* alinha o primeiro ícone com o título */
+}
 .contact-form {
   display: flex;
   flex-direction: column;
