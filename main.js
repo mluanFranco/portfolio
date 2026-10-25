@@ -20,7 +20,7 @@ if (techTrack && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
   });
 }
 
-// Formulário de contato: envia a mensagem por e-mail via FormSubmit
+// Formulário de contato: envia a mensagem por e-mail via Web3Forms
 const contactForm = document.getElementById("contact-form");
 if (contactForm) {
   const status = document.getElementById("form-status");
@@ -37,14 +37,13 @@ if (contactForm) {
     setStatus("Enviando...");
 
     try {
-      const endpoint = contactForm.action.replace("formsubmit.co/", "formsubmit.co/ajax/");
-      const response = await fetch(endpoint, {
+      const response = await fetch(contactForm.action, {
         method: "POST",
         headers: { Accept: "application/json" },
         body: new FormData(contactForm),
       });
       const data = await response.json();
-      if (!response.ok || String(data.success) !== "true") throw new Error(data.message);
+      if (!response.ok || data.success !== true) throw new Error(data.message);
 
       contactForm.reset();
       setStatus("Mensagem enviada! Obrigado pelo contato.", "success");

@@ -136,12 +136,13 @@
       <div class="container">
         <h2 class="section-title">Contato</h2>
 
-        <form class="contact-form" id="contact-form" action="https://formsubmit.co/148c4b630eb2120b176bd98a8e7c48fb" method="POST">
-          <input type="hidden" name="_subject" value="Nova mensagem pelo portfólio">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <!-- Campo invisível contra spam: robôs preenchem, pessoas não -->
-          <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off">
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Chave do Web3Forms: só encaminha mensagens para o seu e-mail, pode ficar pública -->
+          <input type="hidden" name="access_key" value="SUA_ACCESS_KEY_AQUI">
+          <input type="hidden" name="subject" value="Nova mensagem pelo portfólio">
+          <input type="hidden" name="from_name" value="Portfólio">
+          <!-- Campo invisível contra spam: robôs marcam, pessoas não -->
+          <input type="checkbox" name="botcheck" class="form-honey" tabindex="-1" autocomplete="off">
 
           <div class="form-row">
             <div class="form-field">
