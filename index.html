@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matheus Franco | Desenvolvedor Full Stack</title>
+  <meta name="description" content="Portfólio de Matheus Franco, desenvolvedor full stack.">
+  <meta name="author" content="Matheus Franco">
+
+  <!-- Prévia ao compartilhar o link (LinkedIn, WhatsApp etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Matheus Franco | Desenvolvedor Full Stack">
+  <meta property="og:description" content="Portfólio de Matheus Franco, desenvolvedor full stack.">
+  <meta property="og:locale" content="pt_BR">
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">Matheus Franco</a>
+
+      <nav class="nav">
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <img src="assets/images/favicon.png" alt="Avatar de Matheus Franco" class="hero-avatar" width="180" height="180">
+      <h1 class="hero-title" aria-label="Olá! Eu sou o Matheus.">
+        <span class="typewriter" data-text="Olá! Eu sou o Matheus." aria-hidden="true"></span><span class="cursor" aria-hidden="true"></span>
+      </h1>
+      <p class="hero-role">Desenvolvedor.</p>
+      <p class="hero-subtitle">Construindo APIs, integrações e automações que funcionam de verdade.</p>
+    </section>
+
+    <!-- Sobre mim -->
+    <section class="section" id="sobre">
+      <div class="container">
+        <h2 class="section-title">Sobre mim</h2>
+        <p class="about-text">
+          Sou um profissional de TI com mais de 3 anos de experiência na área e, atualmente,
+          atuo na sustentação de sistemas ERP.
+        </p>
+        <p class="about-text">
+          Também participo ativamente do desenvolvimento de projetos e soluções para terceiros,
+          com foco em criação de APIs, modelagem de dados, automações e integrações com IA.
+        </p>
+
+        <a href="assets/docs/curriculo-matheus-franco.pdf" download="Curriculo-Matheus-Franco.pdf" class="cv-download" title="Baixar currículo (PDF)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="12" y1="12" x2="12" y2="18"/>
+            <polyline points="9 15 12 18 15 15"/>
+          </svg>
+          Baixar CV
+        </a>
+      </div>
+    </section>
+
+    <!-- Projetos -->
+    <section class="section" id="projetos">
+      <div class="container">
+        <h2 class="section-title">Projetos</h2>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <h3 class="project-name">Sistema de gestão de estoque</h3>
+            <p class="project-description">
+              ERP desenvolvido como TCC para a Nova Sorvetes, substituindo o controle por planilhas
+              por uma solução centralizada, com módulos de estoque, pedidos, produção, financeiro e um
+              assistente virtual com IA.
+            </p>
+            <ul class="project-tags">
+              <li>FastAPI</li>
+              <li>Python</li>
+              <li>Docker</li>
+              <li>MySQL</li>
+            </ul>
+            <a href="https://github.com/mluanFranco/tcc" target="_blank" rel="noopener" class="project-link">Ver no GitHub →</a>
+          </article>
+
+          <article class="project-card">
+            <h3 class="project-name">Projeto 2</h3>
+            <p class="project-description">Breve descrição do projeto.</p>
+            <ul class="project-tags">
+              <li>Tecnologia</li>
+              <li>Tecnologia</li>
+            </ul>
+            <a href="#" class="project-link">Ver no GitHub →</a>
+          </article>
+
+          <article class="project-card">
+            <h3 class="project-name">Projeto 3</h3>
+            <p class="project-description">Breve descrição do projeto.</p>
+            <ul class="project-tags">
+              <li>Tecnologia</li>
+              <li>Tecnologia</li>
+            </ul>
+            <a href="#" class="project-link">Ver no GitHub →</a>
+          </article>
+        </div>
+
+        <h3 class="tech-title">Tecnologias</h3>
+        <div class="tech-carousel">
+          <ul class="tech-track">
+            <li class="tech-item"><img src="assets/icons/Python.svg" alt="" width="48" height="48"><span>Python</span></li>
+            <li class="tech-item"><img src="assets/icons/FastAPI.svg" alt="" width="48" height="48"><span>FastAPI</span></li>
+            <li class="tech-item"><img src="assets/icons/MySQL.svg" class="tech-icon--brighten" alt="" width="48" height="48"><span>MySQL</span></li>
+            <li class="tech-item"><img src="assets/icons/Docker.svg" alt="" width="48" height="48"><span>Docker</span></li>
+            <li class="tech-item"><img src="assets/icons/Microsoft%20SQL%20Server.svg" class="tech-icon--invert" alt="" width="48" height="48"><span>SQL Server</span></li>
+            <li class="tech-item"><img src="assets/icons/Git.svg" alt="" width="48" height="48"><span>Git</span></li>
+            <li class="tech-item"><img src="assets/icons/JavaScript.svg" alt="" width="48" height="48"><span>JavaScript</span></li>
+            <li class="tech-item"><img src="assets/icons/HTML5.svg" alt="" width="48" height="48"><span>HTML</span></li>
+            <li class="tech-item"><img src="assets/icons/CSS3.svg" alt="" width="48" height="48"><span>CSS</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="section" id="contato">
+      <div class="container">
+        <h2 class="section-title">Contato</h2>
+
+        <form class="contact-form" id="contact-form" action="https://formsubmit.co/matheus.franco1712@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="Nova mensagem pelo portfólio">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <!-- Campo invisível contra spam: robôs preenchem, pessoas não -->
+          <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off">
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            </div>
+            <div class="form-field">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="6" placeholder="Escreva sua mensagem..." required></textarea>
+          </div>
+
+          <div class="form-footer">
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+            <button type="submit" class="btn">Enviar mensagem</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">&copy; <span id="ano"></span> Matheus Franco. Todos os direitos reservados.</p>
+
+      <ul class="social">
+        <li>
+          <a href="mailto:matheus.franco1712@gmail.com" aria-label="E-mail" title="E-mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/matheus-franco-b925b919b/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/mluanFranco" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
