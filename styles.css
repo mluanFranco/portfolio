@@ -284,6 +284,17 @@ main > section + section::before {
   transform: translateY(-4px);
 }
 
+.project-thumb {
+  display: block;
+  width: calc(100% + 48px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  margin: -24px -24px 20px; /* encosta a imagem nas bordas do card */
+  object-fit: cover;
+  object-position: center 65%; /* mostra do personagem até os zumbis */
+  border-radius: 12px 12px 0 0;
+}
+
 .project-name {
   font-size: 1.05rem;
   font-weight: 600;
@@ -291,6 +302,8 @@ main > section + section::before {
 }
 
 .project-description {
+  text-align: justify;
+  hyphens: auto;
   color: var(--color-text-muted);
   font-size: 0.9rem;
   margin-bottom: 20px;
