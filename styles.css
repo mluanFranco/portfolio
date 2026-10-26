@@ -2,15 +2,39 @@
    Variáveis
    ========================================================================== */
 :root {
-  --color-bg: #000000;
-  --color-surface: #0d0d0d;
-  --color-border: #1f1f1f;
-  --color-text: #e6e6e6;
-  --color-text-muted: #7a7a7a;
-
   --font-main: "Inter", system-ui, sans-serif;
   --container-width: 1100px;
   --header-height: 64px;
+}
+
+/* Tema escuro (padrão) */
+:root[data-theme="dark"] {
+  --color-bg: #000000;
+  --color-surface: #0d0d0d;
+  --color-border: #1f1f1f;
+  --color-border-strong: #3a3a3a;
+  --color-divider: #2a2a2a;
+  --color-placeholder: #4a4a4a;
+  --color-text: #e6e6e6;
+  --color-text-muted: #7a7a7a;
+  --color-success: #4ade80;
+  --color-error: #f87171;
+  color-scheme: dark;
+}
+
+/* Tema claro */
+:root[data-theme="light"] {
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-border: #e4e4e4;
+  --color-border-strong: #c4c4c4;
+  --color-divider: #dddddd;
+  --color-placeholder: #a3a3a3;
+  --color-text: #161616;
+  --color-text-muted: #666666;
+  --color-success: #15803d;
+  --color-error: #dc2626;
+  color-scheme: light;
 }
 
 /* ==========================================================================
@@ -30,6 +54,7 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -78,6 +103,12 @@ ul {
   letter-spacing: -0.01em;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
 .nav ul {
   display: flex;
   gap: 32px;
@@ -92,6 +123,64 @@ ul {
 .nav a:hover,
 .nav a:focus-visible {
   color: var(--color-text);
+}
+
+/* Botões de idioma e tema */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  min-width: 32px;
+  padding: 0 8px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.control-btn:hover,
+.control-btn:focus-visible {
+  color: var(--color-text);
+  border-color: var(--color-border-strong);
+  background: var(--color-surface);
+}
+
+.control-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Idioma ativo em destaque */
+.lang-toggle [data-lang] {
+  transition: color 0.2s ease;
+}
+
+:root[lang="pt-BR"] .lang-toggle [data-lang="pt"],
+:root[lang="en"] .lang-toggle [data-lang="en"] {
+  color: var(--color-text);
+}
+
+.lang-sep {
+  margin: 0 4px;
+  opacity: 0.5;
+}
+
+/* Mostra só o ícone do tema atual */
+:root[data-theme="dark"] .icon-sun,
+:root[data-theme="light"] .icon-moon {
+  display: none;
 }
 
 /* ==========================================================================
@@ -159,7 +248,7 @@ ul {
 
 .hero-sep {
   margin: 0 12px;
-  color: #3a3a3a;
+  color: var(--color-border-strong);
   font-weight: 400;
 }
 
@@ -208,7 +297,7 @@ main > section + section::before {
   left: 5%;
   right: 5%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #2a2a2a 15%, #2a2a2a 85%, transparent);
+  background: linear-gradient(90deg, transparent, var(--color-divider) 15%, var(--color-divider) 85%, transparent);
 }
 
 .section-title {
@@ -247,7 +336,7 @@ main > section + section::before {
 .cv-download:hover,
 .cv-download:focus-visible {
   color: var(--color-text);
-  border-color: #3a3a3a;
+  border-color: var(--color-border-strong);
   background: var(--color-surface);
 }
 
@@ -282,7 +371,7 @@ main > section + section::before {
 }
 
 .project-card:hover {
-  border-color: #3a3a3a;
+  border-color: var(--color-border-strong);
   transform: translateY(-4px);
 }
 
@@ -391,8 +480,8 @@ main > section + section::before {
   height: 48px;
 }
 
-/* Ícone cinza escuro demais para o fundo preto */
-.tech-icon--light {
+/* Ícone cinza escuro demais para o fundo preto (no tema claro fica com a cor original) */
+:root[data-theme="dark"] .tech-icon--light {
   filter: brightness(2.4);
 }
 
@@ -455,13 +544,13 @@ main > section + section::before {
 
 .form-field input::placeholder,
 .form-field textarea::placeholder {
-  color: #4a4a4a;
+  color: var(--color-placeholder);
 }
 
 .form-field input:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: #4a4a4a;
+  border-color: var(--color-border-strong);
 }
 
 .form-honey {
@@ -505,11 +594,11 @@ main > section + section::before {
 }
 
 .form-status.is-success {
-  color: #4ade80;
+  color: var(--color-success);
 }
 
 .form-status.is-error {
-  color: #f87171;
+  color: var(--color-error);
 }
 
 /* ==========================================================================
@@ -561,13 +650,43 @@ main > section + section::before {
 /* ==========================================================================
    Responsivo
    ========================================================================== */
-@media (max-width: 480px) {
-  .container {
-    padding: 0 16px;
+/* Telas pequenas: nome + botões na 1ª linha, links do menu na 2ª */
+@media (max-width: 640px) {
+  :root {
+    --header-height: 96px;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    align-content: center;
+    row-gap: 8px;
+  }
+
+  .header-right {
+    display: contents; /* nav e botões passam a ser itens diretos do header */
+  }
+
+  .header-controls {
+    order: 2;
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
   }
 
   .nav ul {
     gap: 20px;
+  }
+
+  .nav a {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
   }
 }
 

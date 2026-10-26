@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matheus Franco - Game Developer</title>
-  <meta name="description" content="Portfólio de Matheus Franco, game developer.">
+  <meta name="description" content="Portfólio de Matheus Franco, game developer." data-i18n-attr="content:meta.description">
   <meta name="author" content="Matheus Franco">
 
   <!-- Prévia ao compartilhar o link (LinkedIn, WhatsApp etc.) -->
@@ -15,10 +15,18 @@
 
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
 
+  <!-- Aplica o tema salvo antes de desenhar a página, para não "piscar" -->
+  <script>
+    try {
+      const tema = localStorage.getItem("tema");
+      if (tema === "light" || tema === "dark") document.documentElement.dataset.theme = tema;
+    } catch (e) {}
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
 
@@ -26,48 +34,67 @@
     <div class="container header-inner">
       <a href="#" class="logo">Matheus Franco</a>
 
-      <nav class="nav">
-        <ul>
-          <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#jogos">Jogos / Projetos</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
+      <div class="header-right">
+        <nav class="nav">
+          <ul>
+            <li><a href="#sobre" data-i18n="nav.about">Sobre</a></li>
+            <li><a href="#jogos" data-i18n="nav.projects">Jogos / Projetos</a></li>
+            <li><a href="#contato" data-i18n="nav.contact">Contato</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-controls">
+          <button type="button" class="control-btn lang-toggle" data-i18n-attr="aria-label:controls.lang;title:controls.lang">
+            <span data-lang="pt">PT</span><span class="lang-sep" aria-hidden="true">/</span><span data-lang="en">EN</span>
+          </button>
+
+          <button type="button" class="control-btn theme-toggle" data-i18n-attr="aria-label:controls.theme;title:controls.theme">
+            <!-- Lua: aparece no tema escuro / Sol: aparece no tema claro -->
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/>
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <img src="assets/images/favicon.png" alt="Avatar de Matheus Franco" class="hero-avatar" width="180" height="180">
-      <h1 class="hero-title" aria-label="Olá! Eu sou o Matheus.">
+      <img src="assets/images/favicon.png" alt="Avatar de Matheus Franco" class="hero-avatar" width="180" height="180" data-i18n-attr="alt:hero.avatarAlt">
+      <h1 class="hero-title" aria-label="Olá! Eu sou o Matheus." data-i18n-attr="aria-label:hero.greeting">
         <span class="typewriter" data-text="Olá! Eu sou o Matheus." aria-hidden="true"></span><span class="cursor" aria-hidden="true"></span>
       </h1>
-      <p class="hero-role">Game Developer</p>
-      <p class="hero-subtitle">Construindo experiências marcantes, interativas e imersivas.</p>
+      <p class="hero-role" data-i18n="hero.role">Game Developer</p>
+      <p class="hero-subtitle" data-i18n="hero.subtitle">Construindo experiências marcantes, interativas e imersivas.</p>
     </section>
 
     <!-- Sobre mim -->
     <section class="section" id="sobre">
       <div class="container">
-        <h2 class="section-title">Sobre mim</h2>
-        <p class="about-text">
+        <h2 class="section-title" data-i18n="about.title">Sobre mim</h2>
+        <p class="about-text" data-i18n="about.p1">
           Sou um profissional de TI com mais de 3 anos de experiência na área e, atualmente,
           atuo na sustentação de sistemas ERP.
         </p>
-        <p class="about-text">
+        <p class="about-text" data-i18n="about.p2">
           Minha paixão por games começou ainda na infância e me acompanha até hoje. No
           desenvolvimento de jogos, encontro a oportunidade de unir técnica e arte para criar
           experiências únicas para quem joga.
         </p>
 
-        <a href="assets/docs/curriculo-matheus-franco.pdf" download="Curriculo-Matheus-Franco.pdf" class="cv-download" title="Baixar currículo (PDF)">
+        <a href="assets/docs/curriculo-matheus-franco.pdf?v=3" download="Curriculo-Matheus-Franco.pdf" class="cv-download" title="Baixar currículo (PDF)" data-i18n-attr="title:about.cvTitle">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
             <polyline points="14 2 14 8 20 8"/>
             <line x1="12" y1="12" x2="12" y2="18"/>
             <polyline points="9 15 12 18 15 15"/>
           </svg>
-          Baixar CV
+          <span data-i18n="about.cv">Baixar CV</span>
         </a>
       </div>
     </section>
@@ -75,49 +102,46 @@
     <!-- Jogos -->
     <section class="section" id="jogos">
       <div class="container">
-        <h2 class="section-title">Jogos / Projetos</h2>
+        <h2 class="section-title" data-i18n="projects.title">Jogos / Projetos</h2>
 
         <div class="projects-grid">
           <article class="project-card">
-            <img src="assets/images/zombie-chaos.jpg" alt="Arte do jogo Zombie Chaos: sobrevivente mascarado com uma arma, cercado por zumbis numa cidade em ruínas" class="project-thumb" width="708" height="944" loading="lazy">
-            <h3 class="project-name">Zombie Chaos</h3>
-            <p class="project-description">
-              FPS de sobrevivência pós-apocalíptico com níveis progressivos de inimigos. Seu principal
-              objetivo é testar suas habilidades e descobrir até qual onda é capaz de sobreviver.
-            </p>
+            <h3 class="project-name" data-i18n="projects.name1">Projeto 1</h3>
+            <p class="project-description" data-i18n="projects.description">Breve descrição do projeto.</p>
             <ul class="project-tags">
-              <li>Unity</li>
-              <li>C#</li>
+              <li data-i18n="projects.tag">Tecnologia</li>
+              <li data-i18n="projects.tag">Tecnologia</li>
             </ul>
-            <a href="https://github.com/mluanFranco/ZombieChaos" target="_blank" rel="noopener" class="project-link">Ver no GitHub →</a>
+            <a href="#" class="project-link" data-i18n="projects.link">Ver no GitHub →</a>
           </article>
 
           <article class="project-card">
-            <h3 class="project-name">Projeto 2</h3>
-            <p class="project-description">Breve descrição do projeto.</p>
+            <h3 class="project-name" data-i18n="projects.name2">Projeto 2</h3>
+            <p class="project-description" data-i18n="projects.description">Breve descrição do projeto.</p>
             <ul class="project-tags">
-              <li>Tecnologia</li>
-              <li>Tecnologia</li>
+              <li data-i18n="projects.tag">Tecnologia</li>
+              <li data-i18n="projects.tag">Tecnologia</li>
             </ul>
-            <a href="#" class="project-link">Ver no GitHub →</a>
+            <a href="#" class="project-link" data-i18n="projects.link">Ver no GitHub →</a>
           </article>
 
           <article class="project-card">
-            <h3 class="project-name">Projeto 3</h3>
-            <p class="project-description">Breve descrição do projeto.</p>
+            <h3 class="project-name" data-i18n="projects.name3">Projeto 3</h3>
+            <p class="project-description" data-i18n="projects.description">Breve descrição do projeto.</p>
             <ul class="project-tags">
-              <li>Tecnologia</li>
-              <li>Tecnologia</li>
+              <li data-i18n="projects.tag">Tecnologia</li>
+              <li data-i18n="projects.tag">Tecnologia</li>
             </ul>
-            <a href="#" class="project-link">Ver no GitHub →</a>
+            <a href="#" class="project-link" data-i18n="projects.link">Ver no GitHub →</a>
           </article>
         </div>
 
-        <h3 class="tech-title">Tecnologias</h3>
+        <h3 class="tech-title" data-i18n="tech.title">Tecnologias</h3>
         <div class="tech-carousel">
           <ul class="tech-track">
             <li class="tech-item"><img src="assets/icons/Unity.svg" class="tech-icon--light" alt="" width="48" height="48"><span>Unity</span></li>
             <li class="tech-item"><img src="assets/icons/C%23%20(CSharp).svg" alt="" width="48" height="48"><span>C#</span></li>
+            <li class="tech-item"><img src="assets/icons/C%2B%2B%20(CPlusPlus).svg" alt="" width="48" height="48"><span>C++</span></li>
             <li class="tech-item"><img src="assets/icons/Git.svg" alt="" width="48" height="48"><span>Git</span></li>
             <li class="tech-item"><img src="assets/icons/Docker.svg" alt="" width="48" height="48"><span>Docker</span></li>
             <li class="tech-item"><img src="assets/icons/Blender.svg" alt="" width="48" height="48"><span>Blender</span></li>
@@ -129,7 +153,7 @@
     <!-- Contato -->
     <section class="section" id="contato">
       <div class="container">
-        <h2 class="section-title">Contato</h2>
+        <h2 class="section-title" data-i18n="contact.title">Contato</h2>
 
           <ul class="social contact-social">
             <li>
@@ -174,23 +198,23 @@
 
           <div class="form-row">
             <div class="form-field">
-              <label for="nome">Nome</label>
-              <input type="text" id="nome" name="name" placeholder="Seu nome" required>
+              <label for="nome" data-i18n="contact.name">Nome</label>
+              <input type="text" id="nome" name="name" placeholder="Seu nome" required data-i18n-attr="placeholder:contact.namePlaceholder">
             </div>
             <div class="form-field">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required>
+              <label for="email" data-i18n="contact.email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="voce@exemplo.com" required data-i18n-attr="placeholder:contact.emailPlaceholder">
             </div>
           </div>
 
           <div class="form-field">
-            <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="message" rows="6" placeholder="Escreva sua mensagem..." required></textarea>
+            <label for="mensagem" data-i18n="contact.message">Mensagem</label>
+            <textarea id="mensagem" name="message" rows="6" placeholder="Escreva sua mensagem..." required data-i18n-attr="placeholder:contact.messagePlaceholder"></textarea>
           </div>
 
           <div class="form-footer">
             <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-            <button type="submit" class="btn">Enviar mensagem</button>
+            <button type="submit" class="btn" data-i18n="contact.send">Enviar mensagem</button>
           </div>
         </form>
       </div>
@@ -199,7 +223,7 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p class="footer-copy">&copy; <span id="ano"></span> Matheus Franco. Todos os direitos reservados.</p>
+      <p class="footer-copy">&copy; <span id="ano"></span> Matheus Franco. <span data-i18n="footer.rights">Todos os direitos reservados.</span></p>
 
       <ul class="social">
         <li>
@@ -235,6 +259,6 @@
     </div>
   </footer>
 
-  <script src="main.js?v=2"></script>
+  <script src="main.js?v=3"></script>
 </body>
 </html>

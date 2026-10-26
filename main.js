@@ -10,6 +10,137 @@ updateHeader();
 // Ano atual no copyright do rodapé
 document.getElementById("ano").textContent = new Date().getFullYear();
 
+// Tema claro / escuro (a escolha fica salva no navegador)
+const root = document.documentElement;
+document.querySelector(".theme-toggle").addEventListener("click", () => {
+  const tema = root.dataset.theme === "light" ? "dark" : "light";
+  root.dataset.theme = tema;
+  try {
+    localStorage.setItem("tema", tema);
+  } catch (e) {}
+});
+
+// Traduções: cada elemento com data-i18n="chave" recebe o texto do idioma atual;
+// data-i18n-attr="atributo:chave;..." traduz atributos (placeholder, aria-label etc.)
+const TRANSLATIONS = {
+  pt: {
+    "meta.title": "Matheus Franco - Game Developer",
+    "meta.description": "Portfólio de Matheus Franco, game developer.",
+    "nav.about": "Sobre",
+    "nav.projects": "Jogos / Projetos",
+    "nav.contact": "Contato",
+    "controls.lang": "Switch to English",
+    "controls.theme": "Alternar tema claro/escuro",
+    "hero.avatarAlt": "Avatar de Matheus Franco",
+    "hero.greeting": "Olá! Eu sou o Matheus.",
+    "hero.role": "Game Developer",
+    "hero.subtitle": "Construindo experiências marcantes, interativas e imersivas.",
+    "about.title": "Sobre mim",
+    "about.p1":
+      "Sou um profissional de TI com mais de 3 anos de experiência na área e, atualmente, atuo na sustentação de sistemas ERP.",
+    "about.p2":
+      "Minha paixão por games começou ainda na infância e me acompanha até hoje. No desenvolvimento de jogos, encontro a oportunidade de unir técnica e arte para criar experiências únicas para quem joga.",
+    "about.cv": "Baixar CV",
+    "about.cvTitle": "Baixar currículo (PDF)",
+    "projects.title": "Jogos / Projetos",
+    "projects.name1": "Projeto 1",
+    "projects.name2": "Projeto 2",
+    "projects.name3": "Projeto 3",
+    "projects.description": "Breve descrição do projeto.",
+    "projects.tag": "Tecnologia",
+    "projects.link": "Ver no GitHub →",
+    "tech.title": "Tecnologias",
+    "contact.title": "Contato",
+    "contact.name": "Nome",
+    "contact.namePlaceholder": "Seu nome",
+    "contact.email": "E-mail",
+    "contact.emailPlaceholder": "voce@exemplo.com",
+    "contact.message": "Mensagem",
+    "contact.messagePlaceholder": "Escreva sua mensagem...",
+    "contact.send": "Enviar mensagem",
+    "contact.sending": "Enviando...",
+    "contact.success": "Mensagem enviada! Obrigado pelo contato.",
+    "contact.error": "Não foi possível enviar. Tente novamente mais tarde.",
+    "footer.rights": "Todos os direitos reservados.",
+  },
+  en: {
+    "meta.title": "Matheus Franco - Game Developer",
+    "meta.description": "Matheus Franco's portfolio, game developer.",
+    "nav.about": "About",
+    "nav.projects": "Games / Projects",
+    "nav.contact": "Contact",
+    "controls.lang": "Mudar para português",
+    "controls.theme": "Toggle light/dark theme",
+    "hero.avatarAlt": "Matheus Franco's avatar",
+    "hero.greeting": "Hi! I'm Matheus.",
+    "hero.role": "Game Developer",
+    "hero.subtitle": "Building memorable, interactive and immersive experiences.",
+    "about.title": "About me",
+    "about.p1":
+      "I'm an IT professional with over 3 years of experience in the field, currently working on ERP systems support and maintenance.",
+    "about.p2":
+      "My passion for games started in childhood and has stayed with me ever since. In game development, I find the opportunity to combine technique and art to create unique experiences for players.",
+    "about.cv": "Download CV",
+    "about.cvTitle": "Download resume (PDF, in Portuguese)",
+    "projects.title": "Games / Projects",
+    "projects.name1": "Project 1",
+    "projects.name2": "Project 2",
+    "projects.name3": "Project 3",
+    "projects.description": "Short project description.",
+    "projects.tag": "Technology",
+    "projects.link": "View on GitHub →",
+    "tech.title": "Technologies",
+    "contact.title": "Contact",
+    "contact.name": "Name",
+    "contact.namePlaceholder": "Your name",
+    "contact.email": "Email",
+    "contact.emailPlaceholder": "you@example.com",
+    "contact.message": "Message",
+    "contact.messagePlaceholder": "Write your message...",
+    "contact.send": "Send message",
+    "contact.sending": "Sending...",
+    "contact.success": "Message sent! Thanks for reaching out.",
+    "contact.error": "Couldn't send your message. Please try again later.",
+    "footer.rights": "All rights reserved.",
+  },
+};
+
+let lang = "pt";
+const t = (key) => TRANSLATIONS[lang][key] ?? key;
+const languageListeners = [];
+
+function setLanguage(newLang) {
+  lang = newLang;
+  root.lang = lang === "pt" ? "pt-BR" : "en";
+  document.title = t("meta.title");
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-attr]").forEach((el) => {
+    el.dataset.i18nAttr.split(";").forEach((pair) => {
+      const [attr, key] = pair.split(":");
+      el.setAttribute(attr, t(key));
+    });
+  });
+
+  languageListeners.forEach((fn) => fn());
+  try {
+    localStorage.setItem("idioma", lang);
+  } catch (e) {}
+}
+
+// Idioma inicial: o salvo, senão o do navegador do visitante
+let savedLang = null;
+try {
+  savedLang = localStorage.getItem("idioma");
+} catch (e) {}
+const initialLang = savedLang || (navigator.language.toLowerCase().startsWith("pt") ? "pt" : "en");
+
+document.querySelector(".lang-toggle").addEventListener("click", () => {
+  setLanguage(lang === "pt" ? "en" : "pt");
+});
+
 // Carrossel de tecnologias: repete os itens até cobrir a largura visível e depois
 // duplica tudo, para o loop infinito não mostrar buracos (mesmo com poucos ícones)
 const techTrack = document.querySelector(".tech-track");
@@ -46,7 +177,7 @@ if (contactForm) {
   contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     submitBtn.disabled = true;
-    setStatus("Enviando...");
+    setStatus(t("contact.sending"));
 
     try {
       const response = await fetch(contactForm.action, {
@@ -58,9 +189,9 @@ if (contactForm) {
       if (!response.ok || data.success !== true) throw new Error(data.message);
 
       contactForm.reset();
-      setStatus("Mensagem enviada! Obrigado pelo contato.", "success");
+      setStatus(t("contact.success"), "success");
     } catch (error) {
-      setStatus("Não foi possível enviar. Tente novamente mais tarde.", "error");
+      setStatus(t("contact.error"), "error");
     } finally {
       submitBtn.disabled = false;
     }
@@ -208,7 +339,7 @@ if (hero && heroAvatar && !window.matchMedia("(prefers-reduced-motion: reduce)")
 // Animação de digitação em loop: escreve, pausa, apaga, pausa...
 const typewriter = document.querySelector(".typewriter");
 if (typewriter) {
-  const text = typewriter.dataset.text;
+  let text = typewriter.dataset.text;
   const TYPE_SPEED = 80;
   const DELETE_SPEED = 40;
   const PAUSE_TYPED = 2000;
@@ -217,9 +348,21 @@ if (typewriter) {
   // Quem prefere menos movimento vê o texto completo, sem animação
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     typewriter.textContent = text;
+    languageListeners.push(() => (typewriter.textContent = t("hero.greeting")));
   } else {
     let index = 0;
     let deleting = false;
+    let timer;
+
+    // Ao trocar de idioma, recomeça a digitação com a nova frase
+    languageListeners.push(() => {
+      text = t("hero.greeting");
+      index = 0;
+      deleting = false;
+      typewriter.textContent = "";
+      clearTimeout(timer);
+      timer = setTimeout(tick, PAUSE_DELETED);
+    });
 
     function tick() {
       index += deleting ? -1 : 1;
@@ -233,9 +376,12 @@ if (typewriter) {
         deleting = false;
         delay = PAUSE_DELETED;
       }
-      setTimeout(tick, delay);
+      timer = setTimeout(tick, delay);
     }
 
-    tick();
+    timer = setTimeout(tick, 0);
   }
 }
+
+// Aplica o idioma inicial depois que todas as partes da página estão prontas
+setLanguage(initialLang);
